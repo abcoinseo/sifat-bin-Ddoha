@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Facebook Button</title>
+    
+    <!-- This line imports the Font Awesome library for the Facebook icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- This is the CSS for the "Design-Full" style -->
+    <style>
+        /* Style for the whole page to center the button */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #1e2025; /* A powerful, dark background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* This is the main button style */
+        #facebook-btn {
+            /* Positioning & Layout */
+            position: relative; /* Needed for advanced effects */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* The Look */
+            background: linear-gradient(45deg, #1877F2, #4267B2);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px; /* Modern pill shape */
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            
+            /* The "Powerful" Shadow Effect */
+            box-shadow: 0 10px 20px rgba(24, 119, 242, 0.4);
+            
+            /* The Animation */
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* The Facebook Icon Style */
+        #facebook-btn .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* --- INTERACTIVE EFFECTS --- */
+
+        /* HOVER Effect: Makes the button "lift up" */
+        #facebook-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(24, 119, 242, 0.6);
+        }
+
+        /* HOVER Effect: Makes the icon spin slightly */
+        #facebook-btn:hover .icon {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        /* CLICK Effect: Makes the button look "pressed down" */
+        #facebook-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 10px rgba(24, 119, 242, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This is your actual button. The link is already set for you. -->
+    <a href="https://www.facebook.com/profile.php?id=100091964033003" id="facebook-btn" target="_blank">
+        <i class="fab fa-facebook-f icon"></i> <!-- The icon -->
+        <span>Connect on Facebook</span>       <!-- The text -->
+    </a>
+
+    <!-- This script gets the library for the confetti effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- This is the JavaScript for the "Powerful" click effect -->
+    <script>
+        // Find the button on the page by its ID
+        const facebookButton = document.getElementById('facebook-btn');
+
+        // Add an event listener that waits for a click
+        facebookButton.addEventListener('click', function(event) {
+            
+            // 1. PREVENT THE LINK from opening immediately.
+            // This gives our animation time to play.
+            event.preventDefault(); 
+            
+            // 2. GET THE URL from the button's href attribute.
+            const url = this.href;
+
+            // 3. LAUNCH THE POWERFUL CONFETTI EFFECT!
+            // This creates a big, centered explosion.
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.5 },
+                gravity: 0.8,
+                scalar: 1.2,
+                colors: ['#FFFFFF', '#1877F2', '#4267B2']
+            });
+
+            // 4. WAIT for a moment, then go to the link.
+            // We wait 800 milliseconds (0.8 seconds) so you can see the effect.
+            setTimeout(function() {
+                window.open(url, '_blank'); // Open the link in a new tab
+            }, 800);
+        });
+    </script>
+
+</body>
+</html>
